@@ -28,16 +28,13 @@
             v-for="tech in skill.techs" :key="tech">
             <v-col cols=4
               v-for="cell in tech" :key="cell">
-              <p>{{cell}}</p>
-            </v-col>
-            <v-col cols=4
-              v-for="cell in tech" :key="cell">
               <div v-if="isNaN(cell)">
                 <p>{{cell}}</p>
               </div>
               <!-- -->
               <div v-else>
-                <v-rating half-increments background-color="gray" color="gray" readonly v-bind:value="cell">
+                <v-rating half-increments background-color="gray" color="gray" readonly v-bind:value="cell" 
+                  dense="true">
                 </v-rating>
               </div>
               <!-- -->
