@@ -1,8 +1,12 @@
 <template>
   <v-container>
     <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-5': $vuetify.breakpoint.mdAndUp}">
+      <v-col cols="12">
+       
+        <p style="font-size: 60pt;" class="blue-grey--text darken1"> <v-icon size="60" class="mr-2">mdi-sword-cross</v-icon>SKILL</p>
+      </v-col>
       <v-col cols="12" sm="6" md="6" lg="6" xl="6"
-        v-for="skill in skills" :key="skill" >
+        v-for="skill in skills" :key="skill.id" >
         <v-card class="pa-6 {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-5': $vuetify.breakpoint.mdAndUp}"
           elevation="1" >
           <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-5': $vuetify.breakpoint.mdAndUp}">
@@ -14,27 +18,27 @@
             </p>
           </v-row>
           <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-1': $vuetify.breakpoint.mdAndUp}">
-            <p class="overline ma-1">
+            <v-card-text class="ma-1">
               {{skill.description}}
-            </p>
+            </v-card-text>
           </v-row>
           <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-1': $vuetify.breakpoint.mdAndUp}">
             <v-col cols=4
-              v-for="colname in colsname" :key="colname">
+              v-for="colname in colsname" :key="colname.id">
               <p>{{colname}}</p>
             </v-col>
           </v-row>
           <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-1': $vuetify.breakpoint.mdAndUp}"
-            v-for="tech in skill.techs" :key="tech">
+            v-for="tech in skill.techs" :key="tech.id">
             <v-col cols=4
-              v-for="cell in tech" :key="cell">
-              <div v-if="isNaN(cell)">
+              v-for="cell in tech" :key="cell.id">
+              <div v-if='isNaN(cell)||cell==""'>
                 <p>{{cell}}</p>
               </div>
               <!-- -->
               <div v-else>
-                <v-rating half-increments background-color="gray" color="gray" readonly v-bind:value="cell" 
-                  dense="true">
+                <v-rating half-increments background-color="gray" color="gray" readonly :value="cell" 
+                  :dense=true :size="size" >
                 </v-rating>
               </div>
               <!-- -->
@@ -49,7 +53,17 @@
 <script>
   export default {
     name: 'MainContent',
-
+    computed: {
+      size () {
+        switch (this.$vuetify.breakpoint.name) {
+          case 'xs': return 10
+          case 'sm': return 16
+          case 'md': return 20
+          case 'lg': return 30
+          case 'xl': return 30
+        }
+      },
+    },
     data: () => ({
       colsname: ["技術","経験年数","スキル"],
       skills: 
@@ -59,62 +73,87 @@
                 title: 'Webフロントエンド',
                 description: 'このページではVuetifyを使いました。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["HTML", "3年", 2],
+                           ["CSS", "3年", 2],
+                           ["JavaScript", "3年", 2.5],
+                           ["jQuery", "3年", 1.5],
+                           ["Vue.js", "半年", 1.5],
+                           ["-", "-", "-"],
                        ]
             },
             {
                 icon: 'mdi-desktop-tower',
                 title: 'バックエンド',
-                description: 'このページではVuetifyを使いました。',
+                description: '直近ではnodeやphpを書くことがありました。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["Python(2,3)", "7年", 5],
+                           ["PHP", "2年", 2.5],
+                           ["Nodejs", "1年", 2.5],
+                           ["Shell", "7年", 2],
+                           ["C", "4年", 3.5],
+                           ["C++", "2年", 3],
                        ]
             },
             {
                 icon: 'mdi-server',
                 title: 'インフラ・サーバー',
-                description: 'このページではVuetifyを使いました。',
+                description: '国内のVPSやレンタルサーバーも借りなれています。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["Linux", "7年", 5],
+                           ["Nginx", "3年", 3],
+                           ["Apache", "2年", 2],
+                           ["GCP,Azure", "3年", 4],
                        ]
             },
             {
                 icon: 'mdi-database',
                 title: 'DB',
-                description: 'このページではVuetifyを使いました。',
+                description: '直近では慣れないphpでSQLiを塞ぐ実装に頭を捻らせていました。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["MySQL", "3年", 4],
+                           ["PostgreSQL", "1年", 3.5],
+                           ["SQLite", "3年", 2],
+                           ["-", "-", "-"],
                        ]
             },
             {
                 icon: 'mdi-remote-desktop',
                 title: 'DevOps',
-                description: 'このページではVuetifyを使いました。',
+                description: '最近はDockerでAlpineをベースに開発環境を作る事が増えました。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["Docker", "1年", 4],
+                           ["Ansible", "1年", 1],
+                           ["Git", "3年", 2],
                        ]
             },
             {
                 icon: 'mdi-google-controller',
                 title: 'ゲーム',
-                description: 'このページではVuetifyを使いました。',
+                description: '最近少しUnityとC#を始めましたがまだよく分かっていないです。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["Unity", "半年", 1],
+                           ["C# (Unity)", "半年", 2],
+                           ["-", "-", "-"],
                        ]
             },
             {
                 icon: 'mdi-cellphone',
                 title: 'モバイル',
-                description: 'このページではVuetifyを使いました。',
+                description: 'Androidシステム関連の機能を重視していてUIは手抜きな物が多いです。',
                 techs: [
-                           ["JavaScript", "3年", "2"],
-                           ["JavaScript", "3年", "2"],
+                           ["AndroidStudio", "3年", 3],
+                           ["Java", "3年", 3],
+                           ["Smali(dalvik assembly)", "3年", 2],
+                       ]
+            },
+            {
+                icon: 'mdi-developer-board',
+                title: 'その他',
+                description: 'Arduinoでデータベースに自動挿入される測りを作りました。',
+                techs: [
+                           ["Scheme", "半年", 3],
+                           ["Arduino", "2年", 3.5],
+                           ["LabView", "1年", 2.5],
                        ]
             },
         ],

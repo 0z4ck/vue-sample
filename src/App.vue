@@ -1,16 +1,20 @@
 <template>
   <v-app>
     <HeaderComponent/>
-    <v-main>
+    <v-main class="light-blue lighten-5">
+      <ProfileContent/>
       <MainContent/>
-      <FooterComponent/>
+      <ProductContent/>
     </v-main>
+    <FooterComponent/>
   </v-app>
 </template>
 
 <script>
 import HeaderComponent from './components/HeaderComponent';
+import ProfileContent from './components/ProfileContent';
 import MainContent from './components/MainContent';
+import ProductContent from './components/ProductContent';
 import FooterComponent from './components/FooterComponent';
 
 export default {
@@ -18,7 +22,9 @@ export default {
 
   components: {
     HeaderComponent,
+    ProfileContent,
     MainContent,
+    ProductContent,
     FooterComponent,
   },
 

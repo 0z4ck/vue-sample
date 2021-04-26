@@ -1,8 +1,12 @@
 <template>
     <v-app-bar
       app
-      color="primary"
+      color="cyan darken-2"
       dark
+      fade-img-on-scroll
+      shrink-on-scroll
+      height="256px"
+      src="board.jpg"
     >
       <div class="d-flex align-center">
         <v-img
@@ -24,15 +28,10 @@
         />
       </div>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-row justify="center" class="text-center {'ma-0': $vuetify.breakpoint.smAndDown, 'ma-5': $vuetify.breakpoint.mdAndUp}">
+        <v-col cols="12">
+       
+        </v-col>
+      </v-row> 
     </v-app-bar>
 </template>
