@@ -3,6 +3,10 @@ node_modules
 /dist
 
 
+#static files
+*.jpg
+public/*.jpg
+
 # local env files
 .env.local
 .env.*.local
