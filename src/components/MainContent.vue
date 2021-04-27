@@ -62,7 +62,8 @@
           case 'lg': return 30
           case 'xl': return 30
         }
-      },
+        return 10;
+      }
     },
     data: () => ({
       colsname: ["技術","経験年数","スキル"],
@@ -86,7 +87,7 @@
                 title: 'バックエンド',
                 description: '直近ではnodeやphpを書くことがありました。',
                 techs: [
-                           ["Python(2,3)", "7年", 5],
+                           ["Python(2,3)", "6年", 5],
                            ["PHP", "2年", 2.5],
                            ["Nodejs", "1年", 2.5],
                            ["Shell", "7年", 2],
